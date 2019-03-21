@@ -7,7 +7,7 @@ buildscript {
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -25,3 +25,33 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+this.beforeEvaluate{//配置阶段开始之前执行的，初始化阶段和配置阶段中间这个阶段
+    println '初始化阶段完毕'
+}
+this.afterEvaluate{//执行完配置阶段之后，配置阶段和执行阶段中间这个阶段
+    println '配置阶段执行完毕'
+}
+
+
+
+this.gradle.buildFinished{//gradle生命周期结束之后
+    println '执行阶段执行完毕'
+}
+
+this.gradle.beforeProject{//等同于beforeEvaluate
+    println '初始化阶段完毕Project'
+}
+this.gradle.afterProject{//等同于afterEvaluate
+    println '配置阶段执行完毕Project'
+}
+
+//还有另外一种添加监听的方法
+//this.gradle.addBuilderListener{
+//
+//}
+//this.gradle.adListener{
+//
+//}
+//this.project.addProjectEvaluateListener{
+//
+//}
