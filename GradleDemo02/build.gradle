@@ -3,11 +3,10 @@
 buildscript {
     
     repositories {
-        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
+        classpath "com.android.tools.build:gradle:2.3.3"
         
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -17,22 +16,22 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         jcenter()
     }
+
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-//getMyAllProjects()
+//this.getMyAllProjects()
 //
 //def getMyAllProjects(){
 //    println "*******************"
 //    println "All Projects"
 //    println "*******************"
-//    def projectList=this.getAllProjects()
+//    def projectList=this.allProjects
 //    projectList.eachWithIndex{ Project project,int index->
 //        if (index==0){
 //            println "Root project:${project.name}"
@@ -41,3 +40,6 @@ task clean(type: Delete) {
 //        }
 //    }
 //}
+
+
+

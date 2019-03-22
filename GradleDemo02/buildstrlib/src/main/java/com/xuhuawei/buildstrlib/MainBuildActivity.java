@@ -1,9 +1,9 @@
 package com.xuhuawei.buildstrlib;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class MainBuildActivity extends AppCompatActivity {
+public class MainBuildActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

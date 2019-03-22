@@ -1,9 +1,9 @@
 package com.xuhuawei.pullalive;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class MainPullAliveActivity extends AppCompatActivity {
+public class MainPullAliveActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
