@@ -25,21 +25,21 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-//this.getMyAllProjects()
-//
-//def getMyAllProjects(){
-//    println "*******************"
-//    println "All Projects"
-//    println "*******************"
-//    def projectList=this.allProjects
-//    projectList.eachWithIndex{ Project project,int index->
-//        if (index==0){
-//            println "Root project:${project.name}"
-//        }else{
-//            println "+--- project:${project.name}"
-//        }
-//    }
-//}
+this.getMyAllProjects()
+
+def getMyAllProjects(){
+    println "*******************"
+    println "All Projects"
+    println "*******************"
+    def projectList=this.getAllprojects()
+    projectList.eachWithIndex{ Project project,int index->
+        if (index==0){
+            println "Root project:${project.name}"
+        }else{
+            println "+--- project:${project.name}"
+        }
+    }
+}
 
 
 

@@ -27,18 +27,3 @@ dependencies {
 }
 
 
-//this.getMyAllProjects()
-//
-//def getMyAllProjects(){
-//    println "*******************"
-//    println "All Projects"
-//    println "*******************"
-//    def projectList=project.allprojects
-//    projectList.eachWithIndex{ def project,int index->
-//        if (index==0){
-//            println "Root project:${project.name}"
-//        }else{
-//            println "+--- project:${project.name}"
-//        }
-//    }
-//}
