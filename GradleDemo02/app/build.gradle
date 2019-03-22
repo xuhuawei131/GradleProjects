@@ -25,5 +25,33 @@ dependencies {
     compile project(':pullalive')
     compile project(':Test')
 }
+//获取当前project的所有子project
+//getMySubProjects()
 
 
+def getMySubProjects(){
+    println "*******************"
+    println "App Sub Projects"
+    println "*******************"
+    def projectList=this.getSubprojects()
+
+    projectList.eachWithIndex{ Project project,int index->
+        println "+--- project:${project.name}"
+    }
+}
+
+//获取父parent
+//getParentProject()
+
+def getParentProject(){
+    def name=this.getParent().getName()
+    println "the parent project name is:$name";
+}
+
+//获取父parent
+//getRootPro()
+
+def getRootPro(){
+    def name=this.getRootProject().getName()
+    println "the Root project name is:$name";
+}

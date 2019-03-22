@@ -1,14 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: this.file('root1.gradle')
+//apply from: this.file('root1.gradle')
 
 buildscript {
-    
+
     repositories {
         jcenter()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:2.3.3"
-        
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -26,21 +25,45 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-this.getMyAllProjects()
+//app moudle工程的配置
+project('app') { Project project ->//闭包作为最后一个参数的时候，大括号可以放在外面
+    println project.getName()
+    apply plugin: 'com.android.application'
+    group 'com.xuhuawei'
+    version '1.0.0'
+    dependencies {
 
-def getMyAllProjects(){
-    println "*******************"
-    println "All Projects"
-    println "*******************"
-    def projectList=this.getAllprojects()
-    projectList.eachWithIndex{ Project project,int index->
-        if (index==0){
-            println "Root project:${project.name}"
-        }else{
-            println "+--- project:${project.name}"
-        }
+    }
+    android {
+
+    }
+}
+//vuandroidadsdk 下的配置 放到父project中去配置
+project('vuandroidassdk') {//省略了Project project ->
+    apply plugin: 'com.android.library'
+    group 'com.xuhuawei'
+    version '1.0.0'
+    dependencies {
+
     }
 }
 
+//配置当前节点的工程和其他subproject的所有project
+allprojects {//我们上面的两个子project中 都有相同的部分  group 'com.xuhuawei' 和version '1.0.0'
+    group 'com.xuhuawei'
+    version '1.0.0'
+}
+
+//Test的这个moudle 没有设置过group，所以调用allproject之后 我们看看有没有被影响到
+println project('Test').group
 
 
+//不包含当前的节点工程，只包含他的subproject
+subprojects {//给所有的子project都引入一个publishToMaven.gradle文件
+    if (project.plugins.hasPlugin("com.android.library")) {
+    //如果当前project中 的插件是com.android.library这个的话，表示这个库工程
+        apply from: '../publishToMaven.gradle'//上传到maven是独立的功能， 如果哪个moudle中的gradle文件需要 直接引入这个文件就可以了
+        //apply from 是引入文件的意思
+
+    }
+}

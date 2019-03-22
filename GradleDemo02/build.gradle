@@ -25,13 +25,14 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-this.getMyAllProjects()
+//this.getMyAllProjects()
 
 def getMyAllProjects(){
     println "*******************"
     println "All Projects"
     println "*******************"
     def projectList=this.getAllprojects()
+
     projectList.eachWithIndex{ Project project,int index->
         if (index==0){
             println "Root project:${project.name}"
@@ -41,5 +42,33 @@ def getMyAllProjects(){
     }
 }
 
+//获取当前project的所有子project
+//getMySubProjects()
 
 
+def getMySubProjects(){
+    println "*******************"
+    println "Sub Projects"
+    println "*******************"
+    def projectList=this.getSubprojects()
+
+    projectList.eachWithIndex{ Project project,int index->
+        println "+--- project:${project.name}"
+    }
+}
+
+//获取父parent
+//getParentProject()
+
+def getParentProject(){
+    def parent=this.getParent()
+    println "the parent project name is:$parent"
+}
+
+//获取父parent
+//getRootPro()
+
+def getRootPro(){
+    def name=this.getRootProject().getName()
+    println "the Root project name is:$name"
+}
