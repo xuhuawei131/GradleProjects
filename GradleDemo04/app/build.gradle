@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+//def mCompileSdkVersion=27
+//def mLibAndroidDesign='com.android.support:design:27.0.0'
+//ext{
+//    extCompileSdkVersion=27
+//    extLibAndroidDesign='com.android.support:design:27.0.0'
+//}
+
+android {
+    compileSdkVersion this.extCompileSdkVersion
+    buildToolsVersion extAndroid.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.extAndroid.applicationId
+        minSdkVersion propertyMinSdkVersion
+        targetSdkVersion propertyTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    print(project.allprojects + "----------")
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':buildstrlib')
+    compile project(':pullalive')
+    compile project(':Test')
+    compile this.extLibAndroidDesign
+}
+
+

@@ -1,0 +1,46 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: this.file('root1.gradle')
+
+buildscript {
+
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:2.3.3"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+
+
+//subprojects {
+//    ext{
+//        extCompileSdkVersion=27
+//        extLibAndroidDesign='com.android.support:design:27.0.0'
+//    }
+//}
+
+//subprojects {//把上传代码aar的模块 应用到每个子工程中
+//    apply from:'../publishToMaven.gradle'
+//}
+
+//ext{
+//    extCompileSdkVersion=27
+//    extLibAndroidDesign='com.android.support:design:27.0.0'
+//}
