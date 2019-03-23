@@ -1,0 +1,47 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: this.file('root1.gradle')
+
+buildscript {
+
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:2.3.3"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//当前根目录下的path
+println "the root file path is:${getRootDir().absolutePath}"
+println "the root file path is:${getBuildDir().absolutePath}"
+println "the root file path is:${getProjectDir().absolutePath}"
+
+//file() 文件定位的方法：以我们当前的project目录下寻找我们的文件，
+// 能找到就返回这个file对象，找不到就抛出异常
+def getContent(String path){
+    try{
+        def  file=file(path)
+        //返回文件的内容
+        return file.text
+    }catch(GradleException e){
+        println( "file not found")
+    }
+}
+//我们当前project下的 也就是根目录下的 root1.gradle文件
+println getContent('root1.gradle')
