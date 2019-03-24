@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
+
 //    print(project.allprojects + "----------")
 }
 
@@ -25,33 +29,23 @@ dependencies {
     compile project(':pullalive')
     compile project(':Test')
 }
-//获取当前project的所有子project
-//getMySubProjects()
 
+//task是我们gradle的执行阶段，不是配置阶段
+task(name:'apkcopy'){//闭包配置我们执行的逻辑
+    doLast{//dolast会在我们执行阶段执行
+        def sourcePath=this.getBuildDir().getPath()+'/outputs/apk/'
+        def desationPath='/Users/lingdian/Downloads'//系统中的下载路径
+        def command="mv -f ${sourcePath} ${desationPath}"
 
-def getMySubProjects(){
-    println "*******************"
-    println "App Sub Projects"
-    println "*******************"
-    def projectList=this.getSubprojects()
-
-    projectList.eachWithIndex{ Project project,int index->
-        println "+--- project:${project.name}"
+        //以后如果我们要执行其他的外部 命令，只要把command修改了就行了，其他的不用动
+        exec{//exec 去执行我们的外部命令，接受一个闭包作为参数
+            try{
+                executable('bash')//定义我们的执行的类型,如果是外部命令，那就是我们的bash
+                args '-c',command
+                println 'the conmand is execute success'
+            }catch(GradleException e){
+                println 'thecommand id execute failed'
+            }
+        }
     }
-}
-
-//获取父parent
-//getParentProject()
-
-def getParentProject(){
-    def name=this.getParent().getName()
-    println "the parent project name is:$name";
-}
-
-//获取父parent
-//getRootPro()
-
-def getRootPro(){
-    def name=this.getRootProject().getName()
-    println "the Root project name is:$name";
 }
