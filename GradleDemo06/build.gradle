@@ -2,16 +2,35 @@
 apply from: this.file('root1.gradle')
 
 buildscript {
-
-    repositories {
-        jcenter()
-        google()
+    ScriptHandler handler->//可写可不写
+    //配置我们的工程仓库地址
+        handler.repositories { RepositoryHandler repositoryHandler->//可写可不写
+            repositoryHandler.jcenter()//repositoryHandler. 可写可不写
+            repositoryHandler.google()//repositoryHandler. 可写可不写
+//            mavenCentral()
+//            mavenLocal()//本地maven
+//            repositoryHandler.ivy {}//ant 配置，如果没有不能写，否则报错
+            //自定义私有maven仓库地址,，可以配置多个maven库地址
+            repositoryHandler.maven { MavenArtifactRepository mavenArtifactRepository->
+                //一般是公司的或者个人的名称  等同于name=''
+//                mavenArtifactRepository.setName("xuhuawei")
+                name="xuhuawei"
+                url="http://localhost://8081:/nexus/repositories/" //厂库地址 等同于 setUrl，mavenArtifactRepository可写可不写
+                mavenArtifactRepository.credentials{PasswordCredentials passwordCredentials->//如果有账号和密码 在这里设置，
+                    // PasswordCredentials passwordCredentials可写可不写
+                    username="admin"// passwordCredentials.username="admin" passwordCredentials.setName("admin")
+                    password="admin123"//password="admin123"，passwordCredentials.setPassword("admin123")
+                }
+            }
     }
+
+
+
+
+    //配置我们工程“插件”依赖的地址
     dependencies {
         classpath "com.android.tools.build:gradle:2.3.3"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "com.tencent.tinker:tinker-patch-gradle-plugin:1.7.7"
     }
 }
 
@@ -27,21 +46,3 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-//当前根目录下的path
-println "the root file path is:${getRootDir().absolutePath}"
-println "the root file path is:${getBuildDir().absolutePath}"
-println "the root file path is:${getProjectDir().absolutePath}"
-
-//file() 文件定位的方法：以我们当前的project目录下寻找我们的文件，
-// 能找到就返回这个file对象，找不到就抛出异常
-def getContent(String path){
-    try{
-        def  file=file(path)
-        //返回文件的内容
-        return file.text
-    }catch(GradleException e){
-        println( "file not found")
-    }
-}
-//我们当前project下的 也就是根目录下的 root1.gradle文件
-println getContent('root1.gradle')
