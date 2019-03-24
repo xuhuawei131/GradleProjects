@@ -1,0 +1,17 @@
+ext{
+    extCompileSdkVersion=27
+    extLibAndroidDesign='com.android.support:design:27.0.0'
+    //android 是一个map映射
+    extAndroid = [extCompileSdkVersion   : 25,
+               buildToolsVersion   : '27.0.3',
+               applicationId       : 'com.xuhuawei.gradledemo',
+               minSdkVersion       : 16,
+               targetSdkVersion    : 23,
+               versionCode         : 1,
+               versionName         : '1.0.0',
+               multiDexEnabled     : true,
+               manifestPlaceholders: [UMENG_CHANNEL_VALUE: 'imooc']]
+
+
+}
+

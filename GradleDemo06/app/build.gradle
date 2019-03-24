@@ -1,0 +1,86 @@
+apply plugin: 'com.android.application'
+
+//def mCompileSdkVersion=27
+//def mLibAndroidDesign='com.android.support:design:27.0.0'
+//ext{
+//    extCompileSdkVersion=27
+//    extLibAndroidDesign='com.android.support:design:27.0.0'
+//}
+
+android {
+    compileSdkVersion this.extCompileSdkVersion
+    buildToolsVersion extAndroid.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.extAndroid.applicationId
+        minSdkVersion propertyMinSdkVersion
+        targetSdkVersion propertyTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    print(project.allprojects + "----------")
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //依赖library工程 源码
+    compile project(':buildstrlib')
+    compile project(':pullalive')
+    compile project(':Test')
+
+//    compile this.extLibAndroidDesign
+    compile "com.android.support:design:27.0.0"
+    compile "com.android.support:appcompat-v7:27.0.0"
+
+    compile ('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2'){
+        //exclude 两个参数 key-value形式
+        exclude moudle "support-v4"//排除android-auto-scroll-view-pager中对support-v4依赖
+        //获取具体制定 exclude group:'com.android.support',moudle:'support-v4',version:'27.0.0'
+        transitive false//禁止依赖
+        changing true//每次都从服务端拉取
+    }
+}
+
+//拷贝app下的copyTest.xml文件，到根目录下的build文件夹中
+copy {
+    from file('copyTest.text')
+    into getRootProject().getBuildDir()//不仅可以传file文件，也可以是路径
+}
+
+//把build/outputs/apk/整个目录拷贝到根目录下的build下的apk里面
+copy {
+    from file('build/outputs/apk/')
+    into getRootProject().getBuildDir().getPath()+'/apk/'//不仅可以传file文件，也可以是路径
+    exclude {}//拷贝的时候剔除一些
+    rename {}///对拷贝之后的文件重新命名
+}
+
+//对方法树进行遍历方法1 不跟随闭包 同步获取fileTree对象
+FileTree apkFileTree=fileTree('build/outputs/apk/')
+apkFileTree.visit {//通过visit进行遍历
+    FileVisitDetails element->
+        println "1 the file name is:${element.file.name}"
+        copy {
+            from element.file
+            into getRootProject().getBuildDir().path+"/test/"
+        }
+}
+
+//对方法树进行遍历方法2,异步获取fileTree对象 ，一个跟着的闭包  这个闭包有一个参数 就是FileTree的对象
+fileTree('build/outputs/apk/'){ FileTree fileTree->
+    fileTree.visit {//我们拿到fileTree之后 调用visit方法，然后继续传递一个闭包，闭包的参数看源码
+        FileVisitDetails element->
+            println "2 the file name is:${element.file.name}"
+        copy {
+            from element.file
+            into getRootProject().getBuildDir().path+"/test/"
+        }
+    }
+}

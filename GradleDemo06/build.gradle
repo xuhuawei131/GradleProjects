@@ -1,0 +1,48 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: this.file('root1.gradle')
+
+buildscript {
+    ScriptHandler handler->//可写可不写
+    //配置我们的工程仓库地址
+        handler.repositories { RepositoryHandler repositoryHandler->//可写可不写
+            repositoryHandler.jcenter()//repositoryHandler. 可写可不写
+            repositoryHandler.google()//repositoryHandler. 可写可不写
+//            mavenCentral()
+//            mavenLocal()//本地maven
+//            repositoryHandler.ivy {}//ant 配置，如果没有不能写，否则报错
+            //自定义私有maven仓库地址,，可以配置多个maven库地址
+            repositoryHandler.maven { MavenArtifactRepository mavenArtifactRepository->
+                //一般是公司的或者个人的名称  等同于name=''
+//                mavenArtifactRepository.setName("xuhuawei")
+                name="xuhuawei"
+                url="http://localhost://8081:/nexus/repositories/" //厂库地址 等同于 setUrl，mavenArtifactRepository可写可不写
+                mavenArtifactRepository.credentials{PasswordCredentials passwordCredentials->//如果有账号和密码 在这里设置，
+                    // PasswordCredentials passwordCredentials可写可不写
+                    username="admin"// passwordCredentials.username="admin" passwordCredentials.setName("admin")
+                    password="admin123"//password="admin123"，passwordCredentials.setPassword("admin123")
+                }
+            }
+    }
+
+
+
+
+    //配置我们工程“插件”依赖的地址
+    dependencies {
+        classpath "com.android.tools.build:gradle:2.3.3"
+        classpath "com.tencent.tinker:tinker-patch-gradle-plugin:1.7.7"
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        google()
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
