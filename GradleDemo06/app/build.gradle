@@ -41,8 +41,8 @@ dependencies {
 
     compile ('cn.trinea.android.view.autoscrollviewpager:android-auto-scroll-view-pager:1.1.2'){
         //exclude 两个参数 key-value形式
-        exclude moudle "support-v4"//排除android-auto-scroll-view-pager中对support-v4依赖
-        //获取具体制定 exclude group:'com.android.support',moudle:'support-v4',version:'27.0.0'
+        exclude module: 'support-v4' //排除android-auto-scroll-view-pager中对support-v4依赖
+        //获取具体制定 exclude group:'com.android.support',module:'support-v4',version:'27.0.0'
         transitive false//禁止依赖
         changing true//每次都从服务端拉取
     }
