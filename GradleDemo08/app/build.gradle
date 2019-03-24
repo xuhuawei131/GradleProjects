@@ -30,6 +30,43 @@ dependencies {
     compile project(':Test')
 }
 
+//直接创建
+task helloTask{
+    println 'i am helloTask'
+}
+
+
+//通过TaskContainer去创建Task
+this.tasks.create('helloTask2'){
+    println 'i am helloTask2'
+}
+
+//查看TaskContainer中有哪些方法
+//find、create
+
+
+//无论哪种定义task的方式，在配置阶段，TaskContainer就会构成一个有向图，通过这个有向图 gradle就会知道这些整个task的类别和执行顺序
+
+
+//对创建好的task 进行一些基本的配置，配置的方式基本两种：
+// 1、定义的时候配置  推荐用这种
+task helloTask3(group:'groupName',description:'task study'){//给task定义分组和描述信息
+    println 'i am helloTask3'
+}
+//2、定义好的task中，调用配置方法，在配置的代码块中
+task helloTask4{//给task定义分组和描述信息
+    setGroup('groupName')
+    setDescription('task study')
+    println 'i am helloTask4'
+}
+//设置groupname，groupname相同的task会被放到一起，查看右侧gradle的列表结构
+//如果不设置groupname，name这些task就会被放到other中
+//所以建议我们新建的task 设置一个groupname，便于我们查找
+
+//配置task不仅仅是设置groupname以及描述，这个仅仅影响存放的位置，而且其他的配置可以去源码查看
+
+
+
 //task是我们gradle的执行阶段，不是配置阶段
 task apkcopy{//闭包配置我们执行的逻辑
     doLast{//dolast会在我们执行阶段执行
