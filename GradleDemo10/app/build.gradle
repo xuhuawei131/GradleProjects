@@ -1,0 +1,117 @@
+import org.xmlpull.v1.XmlPullParser
+import org.xmlpull.v1.XmlPullParserException
+
+apply plugin: 'com.android.application'
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        applicationId "com.xuhuawei.gradledemo"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+//    print(project.allprojects + "----------")
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':buildstrlib')
+    compile project(':pullalive')
+    compile project(':Test')
+}
+
+task taskX{
+    doLast{
+        println "taskX"
+    }
+}
+
+task taskY{
+    doLast{
+        println "taskY"
+    }
+}
+//创建的时候依赖
+task taskZ(dependsOn:[taskY,taskX]){
+    doFirst{
+        println "taskZ"
+    }
+}
+//外部依赖
+task taskA{
+    doFirst{
+        println "taskA"
+    }
+}
+taskA.dependsOn(taskX,taskY)
+
+
+task lib1<<{
+    println "lib1"
+}
+
+task lib2<<{
+    println "lib2"
+}
+
+task nolib<<{
+    println "nolib"
+}
+
+task taskB{
+    //动态依赖
+    dependsOn this.tasks.findAll {
+        Task itemTask->itemTask.getName().startsWith("lib")
+    }
+    doLast{
+        println 'taskB'
+    }
+}
+
+//将我们app下的releases.xml文件中的数据 每一个xml数据创建成一个个文件
+task taskParserXML{
+    def sourceFile=file('releases.xml')
+    def destinationFile=new File(this.getBuildDir(),"generated/release")
+
+    doLast{
+        println "开始解析"
+        destinationFile.mkdirs()
+        def releases=new XmlParser().parse(sourceFile)
+        releases.release.each{releaseNode->
+            def versionName=releaseNode.versionName.text()
+            def versionCode=releaseNode.versionCode.text()
+            def versionInfo=releaseNode.versionInfo.text()
+
+            println "versionName:${versionName}"
+            //创建文件 并写入
+            def targetFile=new File(destinationFile,"release-${versionName}.text")
+            targetFile.withWriter{Writer writer->
+                writer.write("${versionName}->${versionCode}->${versionInfo}")
+            }
+        }
+    }
+}
+//我们测试的task 必须依赖于解析xml创建文件的的task
+task taskTestFile(dependsOn:taskParserXML){
+    def fileList=fileTree(this.getBuildDir().path+"/generated/release")
+    doLast{
+        //把每个文件都输出出来
+        fileList.each {
+            println "the file name is ${it.text}"
+        }
+        println '输出完成'
+    }
+}

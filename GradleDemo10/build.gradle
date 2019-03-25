@@ -1,0 +1,74 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:2.3.3"
+        
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+//this.getMyAllProjects()
+
+def getMyAllProjects(){
+    println "*******************"
+    println "All Projects"
+    println "*******************"
+    def projectList=this.getAllprojects()
+
+    projectList.eachWithIndex{ Project project,int index->
+        if (index==0){
+            println "Root project:${project.name}"
+        }else{
+            println "+--- project:${project.name}"
+        }
+    }
+}
+
+//获取当前project的所有子project
+//getMySubProjects()
+
+
+def getMySubProjects(){
+    println "*******************"
+    println "Sub Projects"
+    println "*******************"
+    def projectList=this.getSubprojects()
+
+    projectList.eachWithIndex{ Project project,int index->
+        println "+--- project:${project.name}"
+    }
+}
+
+//获取父parent
+//getParentProject()
+
+def getParentProject(){
+    def parent=this.getParent()
+    println "the parent project name is:$parent"
+}
+
+//获取父parent
+//getRootPro()
+
+def getRootPro(){
+    def name=this.getRootProject().getName()
+    println "the Root project name is:$name"
+}
