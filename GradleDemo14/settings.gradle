@@ -1,0 +1,4 @@
+include ':app',  ':buildstrlib', ':pullalive', ':vuandroidassdk'
+if(hasProperty("isLoadTest")?isLoadTest.toBoolean():false){
+    include ':Test'
+}

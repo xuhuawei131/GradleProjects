@@ -1,0 +1,94 @@
+import com.android.build.gradle.api.AndroidSourceSet
+
+apply plugin: 'com.android.application'
+apply from: file("tagVersion.gradle")
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        applicationId "com.xuhuawei.gradledemo"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+    //我们设置的新路径 都是以app为根目录的
+    //我们将main下面的jniLibs下面的so都迁移到 libs下面（Eclipse是这样弄得）
+    sourceSets{//我们的jniLibs是在main下面
+       main{
+           jniLibs.srcDirs=['libs']//如果so在多个文件夹下面 那么就用多参数的srcDirs，如果仅仅是一个的话那么就用srcDir就行了
+       }
+    }
+    //我们设置的新路径 都是以app为根目录的
+    sourceSets{
+        main{//由于res在main文件夹下，所以要写main闭包
+            res.srcDirs=['src/main/res',
+                         'src/main/res-ad',
+                         'src/main/res-player'
+            ]//将这三个文件夹 都设置为资源索引的文件夹，将来就可以去这里找资源了
+        }
+    }
+
+}
+
+this.android.sourceSets{
+    main{//由于res在main文件夹下，所以要写main闭包
+        res.srcDirs=['src/main/res',
+                     'src/main/res-ad',
+                     'src/main/res-player'
+        ]//将这三个文件夹 都设置为资源索引的文件夹，将来就可以去这里找资源了
+    }
+}
+
+
+dependencies { DependencyHandler handler ->
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':buildstrlib')
+    compile project(':pullalive')
+    compile project(':Test')
+    testCompile project(':Test')
+}
+
+
+
+
+//执行顺序指定  mustRunAfter
+task taskW{
+    doLast{
+        println "taskW"
+    }
+}
+
+task taskX{
+    doLast{
+        println "taskX"
+    }
+}
+
+task taskY{
+    mustRunAfter taskX,taskW
+    doLast{
+        println "taskY"
+    }
+}
+task taskZ{
+    mustRunAfter taskY
+    doLast{
+        println "taskZ"
+    }
+}
+
+
+
