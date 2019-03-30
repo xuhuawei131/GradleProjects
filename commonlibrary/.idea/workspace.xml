@@ -11,7 +11,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="371546e8-189c-4e6f-9f8d-0e2cc8173ff6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../GradleDemo06/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GradleDemo06/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GradleDemo14/buildSrc/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GradleDemo14/buildSrc/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GradleDemo14/buildSrc/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GradleDemo14/buildSrc/src/androidTest/java/com/xuhuawei/buildsrc/ExampleInstrumentedTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../GradleDemo14/buildSrc/src/main/groovy/com/xuhuawei/gradle/plugin/GroovyPlugin.groovy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GradleDemo14/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../GradleDemo14/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GradleDemo14/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GradleDemo14/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GradleDemo14/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../GradleDemo14/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GradleDemo14/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../GradleDemo14/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GradleDemo14/app/release.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GradleDemo14/app/releases.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GradleDemo14/buildstrlib/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../GradleDemo14/buildstrlib/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../GradleDemo14/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../GradleDemo14/settings.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/buildSrc/.gradle/2.14.1/taskArtifacts/cache.properties.lock" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/.gradle/2.14.1/taskArtifacts/cache.properties.lock" afterDir="false" />
     </list>
@@ -95,25 +107,28 @@
         <counts>
           <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.1" value="3" />
+          <entry key="project.open.time.1" value="4" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gradle" value="24" />
-          <entry key="java" value="7" />
+          <entry key="gradle" value="25" />
+          <entry key="groovy" value="1" />
+          <entry key="iml" value="1" />
+          <entry key="java" value="9" />
           <entry key="properties" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Groovy" value="24" />
-          <entry key="JAVA" value="7" />
+          <entry key="Groovy" value="26" />
+          <entry key="IDEA_MODULE" value="1" />
+          <entry key="JAVA" value="9" />
           <entry key="Properties" value="6" />
         </counts>
       </usages-collector>
@@ -234,20 +249,32 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4">
-              <caret line="77" column="50" lean-forward="true" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
+            <state relative-caret-position="28">
+              <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+        <entry file="file://$PROJECT_DIR$/buildSrc/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/buildSrc/src/main/groovy/com/imooc/gradle/study/GradleStudyPlugin.groovy">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="84">
-              <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+              <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+              <folding>
+                <element signature="e#32#60#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -4265,9 +4292,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -4290,6 +4316,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -4659,9 +4686,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22386059" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30093834" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Captures" order="3" side_tool="true" weight="0.25" />
@@ -4685,7 +4711,7 @@
       <window_info anchor="bottom" id="Logcat" order="13" weight="0.40791476" />
       <window_info anchor="bottom" id="Version Control" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Messages" order="15" sideWeight="0.4536" weight="0.16666667" />
-      <window_info active="true" anchor="bottom" id="Build" order="16" visible="true" weight="0.09838473" />
+      <window_info anchor="bottom" id="Build" order="16" visible="true" weight="0.09838473" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -4745,16 +4771,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/微信视频播放解密.iml" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle/2.2.2/523e8ac20129c093dd10f407298f50c5fd0acc70/gradle-2.2.2-sources.jar!/com/android/build/gradle/BaseExtension.java" />
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.android.tools.build/gradle-core/2.2.2/15f2a446b7157416e0a7b912681164edf8532e8a/gradle-core-2.2.2-sources.jar!/com/android/build/gradle/AndroidConfig.java" />
-    <entry file="file://$PROJECT_DIR$/Test/src/main/java/com/imooc/viewpagertest/webp/WebpTestActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vuandroidadsdk/src/main/java/com/youdu/okhttp/HttpConstant.java" />
     <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-2.14.1-all/8bnwg5hd3w55iofp58khbp6yv/gradle-2.14.1/src/core/org/gradle/api/tasks/TaskContainer.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -5110,13 +5126,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="3" column="29" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -5140,8 +5149,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4">
-          <caret line="77" column="50" lean-forward="true" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
+        <state relative-caret-position="28">
+          <caret line="77" column="50" selection-start-line="77" selection-start-column="50" selection-end-line="77" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buildSrc/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="8" column="19" lean-forward="true" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buildSrc/buildSrc.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-2.14.1-all/8bnwg5hd3w55iofp58khbp6yv/gradle-2.14.1/src/core/org/gradle/api/Plugin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/buildSrc/src/main/groovy/com/imooc/gradle/study/GradleStudyPlugin.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="3" column="29" lean-forward="true" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
+          <folding>
+            <element signature="e#32#60#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
