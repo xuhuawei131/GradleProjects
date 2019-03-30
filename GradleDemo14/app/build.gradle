@@ -53,12 +53,13 @@ this.android.sourceSets{
 }
 
 
-dependencies { DependencyHandler handler ->
+dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':buildstrlib')
     compile project(':pullalive')
     compile project(':Test')
     testCompile project(':Test')
+    compile project(':buildSrc')
 }
 
 

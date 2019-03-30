@@ -1,4 +1,4 @@
-include ':app',  ':buildstrlib', ':pullalive', ':vuandroidassdk'
+include ':app',  ':buildstrlib', ':pullalive', ':vuandroidassdk', ':buildSrc'
 if(hasProperty("isLoadTest")?isLoadTest.toBoolean():false){
     include ':Test'
 }

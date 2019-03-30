@@ -1,0 +1,16 @@
+//apply plugin: 'com.android.library'
+apply plugin: 'groovy'
+
+repositories {
+    mavenCentral()
+}
+sourceSets {
+    main {
+        groovy {
+            srcDir 'src/main/groovy'
+        }
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
