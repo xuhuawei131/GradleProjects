@@ -1,0 +1,132 @@
+apply plugin: 'com.android.application'
+import groovy.xml.MarkupBuilder
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        applicationId "com.xuhuawei.gradledemo"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies { DependencyHandler handler ->
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':buildstrlib')
+    compile project(':pullalive')
+    compile project(':Test')
+    testCompile project(':Test')
+}
+//定义常量
+ext {
+    versionName = '1.0.3'
+    versionCode = '103'
+    versionInfo = 'App的第3个版本，上线了一些最基本的核心内容'
+    destiFile = file('release.xml')
+    if (!destiFile.exists()) {
+        destiFile.createNewFile()
+    }
+}
+
+
+task writeTask {
+    //为task指定输入
+    inputs.property('versionName', this.versionName)
+    inputs.property('versionCode', this.versionCode)
+    inputs.property('versionInfo', this.versionInfo)
+    //也可以传入一个map 也是可以的
+//    inputs.property(map)
+    //为task指定输出
+    outputs.file destiFile
+    doLast {
+        //返回一个map
+        Map<String,String> data = inputs.getProperties()
+        //输出文件 等同于outputs.files
+        File file = outputs.getFiles().getSingleFile()
+
+        def sw = new StringWriter()
+        def xmlBuilder = new MarkupBuilder(sw)//生成xml数据的核心类
+        String content = file.text
+
+        //文件中没有内容
+        if (content != null && content.size() == 0) {
+            //没有写入数据，所以要写根节点releases
+            xmlBuilder.releases {
+                release {
+                    versionName(data.versionName)
+                    versionCode(data.versionCode)
+                    versionInfo(data.versionInfo)
+                }
+            }
+            //写入文件
+            file.withWriter {
+                Writer writer ->
+                    writer.append(sw.toString())
+            }
+        } else {
+            List<String> readlines = file.readLines()
+            //已经有了版本信息，那么就不用写根节点releases信息了
+            xmlBuilder.release {
+                    versionName(data.versionName)
+                    versionCode(data.versionCode)
+                    versionInfo(data.versionInfo)
+            }
+            //字符串行数
+            int lineSize = readlines.size() - 1
+
+            file.withWriter {
+                Writer writer ->//writer 是会覆盖重写的，
+                    readlines.eachWithIndex { String item, int i ->
+                        if (i != lineSize) {//如果是最后一行 写一个换行符
+                            writer.append(item + "\n")
+                        } else {
+                            //把我们新的xml数据写入进去
+                            writer.append('\n' + sw.toString() + '\n')
+                            writer.append(item)//这是最后一行 那个根节点的结束符
+                        }
+                    }
+            }
+        }
+    }
+}
+
+//读取任务
+task readTask{//task的输入文件 是writeTask的输出文件 所以
+    inputs.file destiFile
+    doLast{
+        //获取读取的文件
+        def file=inputs.files.singleFile
+        println file.text
+    }
+}
+
+task outputTask{
+    outputs.file destiFile
+    doLast{
+        println "outputTask"
+    }
+}
+
+task inputTask{
+    inputs.file destiFile
+    doLast{
+        println "intputTask"
+    }
+}
+
+
+
