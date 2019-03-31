@@ -1,8 +1,8 @@
 
 
 apply plugin: 'com.android.application'
-apply from: file("tagVersion.gradle")
-apply plugin: 'com.xuhuawei.pluginstudy1'
+//apply from: file("tagVersion.gradle")
+apply plugin: 'com.xuhuawei.gradle.plugin'
 
 android {
     compileSdkVersion 27
@@ -61,34 +61,17 @@ dependencies {
     compile project(':Test')
 }
 
-
-
-
-//执行顺序指定  mustRunAfter
-task taskW{
-    doLast{
-        println "taskW"
-    }
+/**
+ * 为自定义插件传递参数
+ */
+xhwReleaseInfo{
+    versionCodePlugin='200'
+    versionNamePlugin='2.0.0'
+    versionInfoPlugin='第200个版本'
+    fileNamePlugin='release.xml'
 }
 
-task taskX{
-    doLast{
-        println "taskX"
-    }
-}
 
-task taskY{
-    mustRunAfter taskX,taskW
-    doLast{
-        println "taskY"
-    }
-}
-task taskZ{
-    mustRunAfter taskY
-    doLast{
-        println "taskZ"
-    }
-}
 
 
 
